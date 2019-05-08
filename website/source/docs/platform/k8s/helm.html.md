@@ -53,7 +53,7 @@ $ git clone https://github.com/hashicorp/consul-helm.git
 $ cd consul-helm
 
 # Checkout a tagged version
-$ git checkout v0.1.0
+$ git checkout v0.7.0
 
 # Run Helm
 $ helm install --dry-run ./
@@ -359,7 +359,7 @@ In your `values.yaml`, change the value of `global.image` to one of the enterpri
 
 ```yaml
 global:
-  image: "hashicorp/consul-enterprise:1.4.3-ent"
+  image: "hashicorp/consul-enterprise:1.4.4-ent"
 ```
 
 Add the name of the secret you just created to `server.enterpriseLicense`.
@@ -410,7 +410,7 @@ The below values.yaml can be used to set up a single server Consul cluster with 
 ```
 global:
   enabled: true
-  image: "consul:1.4.2"
+  image: "consul:1.4.4"
   domain: consul
   datacenter: dc1
 
@@ -441,7 +441,7 @@ Note, this would require a secret that contains the enterprise license key.
 global:
   enabled: true
   domain: consul
-  image: "hashicorp/consul-enterprise:1.4.2-ent"
+  image: "hashicorp/consul-enterprise:1.4.4-ent"
   datacenter: dc1
 
 server:
