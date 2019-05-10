@@ -53,7 +53,7 @@ $ git clone https://github.com/hashicorp/consul-helm.git
 $ cd consul-helm
 
 # Checkout a tagged version
-$ git checkout v0.7.0
+$ git checkout v0.8.0
 
 # Run Helm
 $ helm install --dry-run ./
@@ -359,7 +359,7 @@ In your `values.yaml`, change the value of `global.image` to one of the enterpri
 
 ```yaml
 global:
-  image: "hashicorp/consul-enterprise:1.4.4-ent"
+  image: "hashicorp/consul-enterprise:1.5.0-ent"
 ```
 
 Add the name of the secret you just created to `server.enterpriseLicense`.
@@ -398,9 +398,9 @@ Licensed Features:
         Advanced Network Federation
 $ consul members
 Node                                       Address           Status  Type    Build      Protocol  DC   Segment
-consul-server-0                            10.60.0.187:8301  alive   server  1.4.3+ent  2         dc1  <all>
-consul-server-1                            10.60.1.229:8301  alive   server  1.4.3+ent  2         dc1  <all>
-consul-server-2                            10.60.2.197:8301  alive   server  1.4.3+ent  2         dc1  <all>
+consul-server-0                            10.60.0.187:8301  alive   server  1.5.0+ent  2         dc1  <all>
+consul-server-1                            10.60.1.229:8301  alive   server  1.5.0+ent  2         dc1  <all>
+consul-server-2                            10.60.2.197:8301  alive   server  1.5.0+ent  2         dc1  <all>
 ```
 
 ## Helm Chart Examples
@@ -410,7 +410,7 @@ The below values.yaml can be used to set up a single server Consul cluster with 
 ```
 global:
   enabled: true
-  image: "consul:1.4.4"
+  image: "consul:1.5.0"
   domain: consul
   datacenter: dc1
 
@@ -441,7 +441,7 @@ Note, this would require a secret that contains the enterprise license key.
 global:
   enabled: true
   domain: consul
-  image: "hashicorp/consul-enterprise:1.4.4-ent"
+  image: "hashicorp/consul-enterprise:1.5.0-ent"
   datacenter: dc1
 
 server:
