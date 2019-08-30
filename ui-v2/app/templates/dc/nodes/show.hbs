@@ -16,6 +16,7 @@
         {{tab-nav
             items=(compact
               (array
+    (if tomography.distances 'Force Graph' '')
                              'Health Checks'
                              'Services'
     (if tomography.distances 'Round Trip Time' '')
@@ -49,6 +50,7 @@
         {{#each
             (compact
                 (array
+   (if tomography.distances (hash id=(slugify 'Force Graph') partial='dc/nodes/force-graph') '')
                             (hash id=(slugify 'Health Checks') partial='dc/nodes/healthchecks')
                             (hash id=(slugify 'Services') partial='dc/nodes/services')
    (if tomography.distances (hash id=(slugify 'Round Trip Time') partial='dc/nodes/rtt') '')

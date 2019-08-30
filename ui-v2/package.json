@@ -120,5 +120,8 @@
       "lib/block-slots",
       "lib/commands"
     ]
+  },
+  "dependencies": {
+    "3d-force-graph": "^1.52.0"
   }
 }
