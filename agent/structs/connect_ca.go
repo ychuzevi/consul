@@ -318,9 +318,10 @@ func (c CommonCAProviderConfig) Validate() error {
 type ConsulCAProviderConfig struct {
 	CommonCAProviderConfig `mapstructure:",squash"`
 
-	PrivateKey     string
-	RootCert       string
-	RotationPeriod time.Duration
+	PrivateKey          string
+	RootCert            string
+	RotationPeriod      time.Duration
+	IntermediateCertTTL time.Duration
 }
 
 // CAConsulProviderState is used to track the built-in Consul CA provider's state.
