@@ -62,7 +62,8 @@ func TestAPI_ConnectCAConfig_get_set(t *testing.T) {
 
 	s.WaitForSerfCheck(t)
 	expected := &ConsulCAProviderConfig{
-		RotationPeriod: 90 * 24 * time.Hour,
+		RotationPeriod:      90 * 24 * time.Hour,
+		IntermediateCertTTL: 365 * 24 * time.Hour,
 	}
 	expected.LeafCertTTL = 72 * time.Hour
 
@@ -83,12 +84,14 @@ func TestAPI_ConnectCAConfig_get_set(t *testing.T) {
 		// Change a config value and update
 		conf.Config["PrivateKey"] = ""
 		conf.Config["RotationPeriod"] = 120 * 24 * time.Hour
+		conf.Config["IntermediateCertTTL"] = 300 * 24 * time.Hour
 		_, err = connect.CASetConfig(conf, nil)
 		r.Check(err)
 
 		updated, _, err := connect.CAGetConfig(nil)
 		r.Check(err)
 		expected.RotationPeriod = 120 * 24 * time.Hour
+		expected.IntermediateCertTTL = 300 * 24 * time.Hour
 		parsed, err = ParseConsulCAConfig(updated.Config)
 		r.Check(err)
 		require.Equal(r, expected, parsed)
