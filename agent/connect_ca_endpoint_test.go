@@ -70,7 +70,8 @@ func TestConnectCAConfig(t *testing.T) {
 	testrpc.WaitForTestAgent(t, a.RPC, "dc1")
 
 	expected := &structs.ConsulCAProviderConfig{
-		RotationPeriod: 90 * 24 * time.Hour,
+		RotationPeriod:      90 * 24 * time.Hour,
+		IntermediateCertTTL: 365 * 24 * time.Hour,
 	}
 	expected.LeafCertTTL = 72 * time.Hour
 	expected.PrivateKeyType = connect.DefaultPrivateKeyType
@@ -97,7 +98,8 @@ func TestConnectCAConfig(t *testing.T) {
 			"Provider": "consul",
 			"Config": {
 				"LeafCertTTL": "72h",
-				"RotationPeriod": "1h"
+				"RotationPeriod": "1h",
+				"IntermediateCertTTL": "2h"
 			}
 		}`))
 		req, _ := http.NewRequest("PUT", "/v1/connect/ca/configuration", body)
@@ -109,6 +111,7 @@ func TestConnectCAConfig(t *testing.T) {
 	// The config should be updated now.
 	{
 		expected.RotationPeriod = time.Hour
+		expected.IntermediateCertTTL = 2 * time.Hour
 
 		req, _ := http.NewRequest("GET", "/v1/connect/ca/configuration", nil)
 		resp := httptest.NewRecorder()
